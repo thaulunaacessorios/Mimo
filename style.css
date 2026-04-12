@@ -1,0 +1,479 @@
+/* ============================================================
+   THAU LUNA ACESSÓRIOS — style.css
+   ============================================================ */
+
+
+/* ── Reset ─────────────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin:     0;
+  padding:    0;
+}
+
+
+/* ── Tokens ─────────────────────────────────────────────────── */
+
+:root {
+  --rosa:       #E8789A;
+  --rosa-deep:  #C9526F;
+  --dourado:    #C9933A;
+  --verde:      #2D7A4F;
+  --verde-lt:   #3A9962;
+  --text-dark:  #1A1118;
+  --text-mid:   #6B4B5E;
+  --text-soft:  #A07D90;
+  --white:      #FFFFFF;
+
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans:  'DM Sans', sans-serif;
+
+  --ease-out:   cubic-bezier(.22, 1, .36, 1);
+}
+
+
+/* ── Body / background ──────────────────────────────────────── */
+
+html, body {
+  min-height:  100%;
+  overflow-x:  hidden;
+}
+
+body {
+  font-family:  var(--font-sans);
+  color:        var(--text-dark);
+  min-height:   100vh;
+  display:      flex;
+  align-items:  center;
+  justify-content: center;
+  padding:      32px 20px;
+
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 10%,  #fce4ec 0%, transparent 65%),
+    radial-gradient(ellipse 70% 50% at 85% 90%,  #fff0dc 0%, transparent 65%),
+    radial-gradient(ellipse 60% 70% at 70% 20%,  #fde8f0 0%, transparent 60%),
+    #fdf6f0;
+  background-attachment: fixed;
+}
+
+
+/* ── Confetti canvas ────────────────────────────────────────── */
+
+#confetti-canvas {
+  position:       fixed;
+  inset:          0;
+  width:          100%;
+  height:         100%;
+  pointer-events: none;
+  z-index:        9999;
+}
+
+
+/* ── Scene (full-page step) ─────────────────────────────────── */
+
+.scene {
+  display:         none;
+  flex-direction:  column;
+  align-items:     center;
+  text-align:      center;
+  width:           100%;
+  max-width:       360px;
+  gap:             28px;
+  animation:       fadeUp 0.6s var(--ease-out) both;
+}
+
+.scene.active {
+  display: flex;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ── Logo ring ──────────────────────────────────────────────── */
+
+.logo-ring {
+  width:           88px;
+  height:          88px;
+  border-radius:   50%;
+  padding:         2.5px;
+  background:      linear-gradient(135deg, #E8789A, #C9933A, #E8789A);
+  background-size: 250%;
+  animation:       ringRotate 5s linear infinite;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  flex-shrink:     0;
+}
+
+@keyframes ringRotate {
+  from { background-position: 0%   50%; }
+  to   { background-position: 250% 50%; }
+}
+
+.logo-inner {
+  width:           81px;
+  height:          81px;
+  border-radius:   50%;
+  background:      var(--white);
+  border:          2.5px solid var(--white);
+  overflow:        hidden;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+}
+
+.logo-img {
+  width:         100%;
+  height:        100%;
+  object-fit:    cover;
+  border-radius: 50%;
+}
+
+.logo-fallback {
+  display:         none;
+  width:           100%;
+  height:          100%;
+  border-radius:   50%;
+  background:      linear-gradient(135deg, #E8789A, #C9933A);
+  align-items:     center;
+  justify-content: center;
+  font-family:     var(--font-serif);
+  font-size:       26px;
+  font-weight:     600;
+  color:           var(--white);
+}
+
+
+/* ── Brand label ────────────────────────────────────────────── */
+
+.brand {
+  font-family:    var(--font-sans);
+  font-size:      11px;
+  font-weight:    500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color:          var(--text-soft);
+  margin-top:     -12px;
+}
+
+
+/* ── Title ──────────────────────────────────────────────────── */
+
+.title {
+  font-family:  var(--font-serif);
+  font-size:    clamp(36px, 9vw, 48px);
+  font-weight:  400;
+  line-height:  1.15;
+  color:        var(--text-dark);
+  letter-spacing: -0.5px;
+}
+
+.title em {
+  font-style:              italic;
+  background:              linear-gradient(135deg, var(--rosa-deep), var(--dourado));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip:         text;
+}
+
+
+/* ── Caption ────────────────────────────────────────────────── */
+
+.caption {
+  font-size:   15px;
+  line-height: 1.6;
+  color:       var(--text-mid);
+  font-weight: 400;
+  margin-top:  -10px;
+}
+
+
+/* ── Step 2 — lock ──────────────────────────────────────────── */
+
+.lock-wrap {
+  font-size:  56px;
+  animation:  lockIn 0.7s var(--ease-out) both;
+}
+
+@keyframes lockIn {
+  from { transform: scale(0.4) rotate(-15deg); opacity: 0; }
+  to   { transform: scale(1)   rotate(0deg);   opacity: 1; }
+}
+
+
+/* ── Gift ───────────────────────────────────────────────────── */
+
+.gift {
+  font-size:   72px;
+  cursor:      pointer;
+  animation:   floatGift 3s ease-in-out infinite;
+  display:     inline-block;
+  filter:      drop-shadow(0 10px 24px rgba(200, 100, 120, 0.28));
+  user-select: none;
+  transition:  transform 0.15s ease;
+}
+
+.gift:hover {
+  transform: scale(1.1);
+}
+
+.gift.exploded {
+  animation: explode 0.5s var(--ease-out) forwards;
+}
+
+@keyframes floatGift {
+  0%   { transform: translateY(0)     rotate(-2deg); }
+  50%  { transform: translateY(-12px) rotate( 2deg); }
+  100% { transform: translateY(0)     rotate(-2deg); }
+}
+
+@keyframes explode {
+  0%   { transform: scale(1);   }
+  35%  { transform: scale(1.45) rotate(12deg); }
+  65%  { transform: scale(0.85) rotate(-8deg); }
+  100% { transform: scale(1)    rotate(0deg);  }
+}
+
+#pre-reveal {
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  gap:            14px;
+}
+
+
+/* ── Post reveal ────────────────────────────────────────────── */
+
+#post-reveal {
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  gap:            24px;
+  width:          100%;
+  animation:      fadeUp 0.5s var(--ease-out) both;
+}
+
+.hidden {
+  display: none !important;
+}
+
+
+/* ── Cupom ──────────────────────────────────────────────────── */
+
+.cupom-label {
+  font-family:    var(--font-sans);
+  font-size:      11px;
+  font-weight:    500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color:          var(--text-soft);
+  margin-bottom:  -16px;
+}
+
+.cupom-box {
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  gap:             14px;
+  width:           100%;
+  background:      var(--white);
+  border:          1.5px solid #f0d0dc;
+  border-radius:   16px;
+  padding:         18px 24px;
+  box-shadow:      0 4px 24px rgba(200, 100, 130, 0.10);
+}
+
+.cupom-code {
+  font-family:             var(--font-serif);
+  font-size:               32px;
+  font-weight:             600;
+  letter-spacing:          3px;
+  background:              linear-gradient(135deg, var(--rosa-deep), var(--dourado));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip:         text;
+}
+
+.btn-copy {
+  border:         1.5px solid var(--rosa);
+  border-radius:  999px;
+  background:     transparent;
+  color:          var(--rosa-deep);
+  font-family:    var(--font-sans);
+  font-size:      12px;
+  font-weight:    500;
+  letter-spacing: 0.5px;
+  padding:        9px 18px;
+  cursor:         pointer;
+  transition:     background 0.2s ease, color 0.2s ease;
+  white-space:    nowrap;
+}
+
+.btn-copy:hover {
+  background: var(--rosa);
+  color:      var(--white);
+}
+
+.copy-feedback {
+  font-size:    13px;
+  color:        var(--verde);
+  font-weight:  500;
+  height:       16px;
+  opacity:      0;
+  transition:   opacity 0.3s ease;
+  margin-top:   -16px;
+  letter-spacing: 0.3px;
+}
+
+.copy-feedback.show {
+  opacity: 1;
+}
+
+
+/* ── Discount block ─────────────────────────────────────────── */
+
+.discount-block {
+  width:          100%;
+  display:        flex;
+  flex-direction: column;
+  gap:            8px;
+}
+
+.discount-row {
+  display:         flex;
+  justify-content: space-between;
+  align-items:     center;
+  padding:         12px 18px;
+  border-radius:   12px;
+  background:      var(--white);
+  border:          1px solid #f0e0e8;
+}
+
+.discount-row.featured {
+  border-color: var(--rosa);
+  box-shadow:   0 2px 16px rgba(200, 80, 110, 0.12);
+}
+
+.off {
+  font-family:  var(--font-serif);
+  font-size:    20px;
+  font-weight:  600;
+  color:        var(--rosa-deep);
+}
+
+.featured .off {
+  background:              linear-gradient(135deg, var(--rosa-deep), var(--dourado));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip:         text;
+  font-size:               22px;
+}
+
+.threshold {
+  font-size:   13px;
+  color:       var(--text-mid);
+  font-weight: 400;
+}
+
+
+/* ── Buttons ────────────────────────────────────────────────── */
+
+.btn {
+  display:         block;
+  width:           100%;
+  padding:         17px 28px;
+  border-radius:   999px;
+  border:          none;
+  font-family:     var(--font-sans);
+  font-size:       13px;
+  font-weight:     500;
+  letter-spacing:  1.2px;
+  text-transform:  uppercase;
+  text-decoration: none;
+  text-align:      center;
+  cursor:          pointer;
+  transition:      transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.btn:hover {
+  transform:  translateY(-2px);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+/* Primary — green (WhatsApp only) */
+.btn-primary {
+  background: linear-gradient(135deg, var(--verde), var(--verde-lt));
+  color:      var(--white);
+  box-shadow: 0 6px 24px rgba(45, 122, 79, 0.32);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 10px 32px rgba(45, 122, 79, 0.42);
+  filter:     brightness(1.05);
+}
+
+/* Rose — steps 1 & 2 */
+.btn-rose {
+  background: linear-gradient(135deg, var(--rosa-deep), var(--rosa));
+  color:      var(--white);
+  box-shadow: 0 6px 24px rgba(201, 82, 111, 0.32);
+}
+
+.btn-rose:hover {
+  box-shadow: 0 10px 32px rgba(201, 82, 111, 0.42);
+  filter:     brightness(1.05);
+}
+
+/* Ghost */
+.btn-ghost {
+  background:  transparent;
+  color:       var(--text-mid);
+  border:      1.5px solid #ddc8d4;
+  box-shadow:  none;
+}
+
+.btn-ghost:hover {
+  border-color: var(--rosa);
+  color:        var(--rosa-deep);
+}
+
+/* Pulse — rose */
+.pulse-btn {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.pulse-btn:hover {
+  animation: none;
+}
+
+@keyframes pulse {
+  0%   { box-shadow: 0 6px 24px rgba(201, 82, 111, 0.32); }
+  50%  { box-shadow: 0 8px 32px rgba(201, 82, 111, 0.55); transform: scale(1.02); }
+  100% { box-shadow: 0 6px 24px rgba(201, 82, 111, 0.32); }
+}
+
+/* Actions group */
+.actions {
+  display:        flex;
+  flex-direction: column;
+  gap:            12px;
+  width:          100%;
+}
+
+
+/* ── Responsive ─────────────────────────────────────────────── */
+
+@media (max-width: 380px) {
+  .title     { font-size: 32px; }
+  .cupom-code { font-size: 26px; }
+  .off       { font-size: 17px; }
+  .featured .off { font-size: 19px; }
+}
