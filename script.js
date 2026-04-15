@@ -127,8 +127,8 @@ function setWhatsAppLink() {
 const btn   = document.getElementById('btn-whatsapp');
 if (!btn) return;
 const phone = '5585987511775'; /* ← substitua pelo número real */
-const text  = Oi! Sou ${clientName}.\nPeguei meu cupom de aniversário: MimoNiver\nQuero usar agora!;
-btn.href    = https://wa.me/${phone}?text=${encodeURIComponent(text)};
+const text  = `Oi! Sou ${clientName}.\nPeguei meu cupom de aniversário: MimoNiver\nQuero usar agora!`;
+btn.href    = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
 }
 
 /* ============================================================
@@ -174,12 +174,12 @@ p.angle += p.spin;
 p.vx    += (Math.random() - 0.5) * 0.15;
 if (p.y > canvas.height * 0.7) p.life -= 0.025;
 
-ctx.save();  
-ctx.globalAlpha = p.life;  
-ctx.fillStyle   = p.color;  
-ctx.translate(p.x, p.y);  
-ctx.rotate(p.angle * Math.PI / 180);  
-ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);  
+ctx.save();
+ctx.globalAlpha = p.life;
+ctx.fillStyle   = p.color;
+ctx.translate(p.x, p.y);
+ctx.rotate(p.angle * Math.PI / 180);
+ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
 ctx.restore();
 
 });
@@ -205,77 +205,78 @@ raf = requestAnimationFrame(tick);
 setTimeout(() => pieces.forEach(p => { p.life = 0; }), 4800);
 }
 
-  /* ===== NOVAS FEATURES ===== */
+/* ===== NOVAS FEATURES ===== */
 
 /* Splash */
 function initSplash() {
-  const splash = document.getElementById("splash");
-  const env = document.getElementById("open-envelope");
-  const nameEl = document.getElementById("splash-name");
+const splash = document.getElementById("splash");
+const env = document.getElementById("open-envelope");
+const nameEl = document.getElementById("splash-name");
 
-  if (!splash || !env || !nameEl) return;
+if (!splash || !env || !nameEl) return;
 
-  typeWriter(clientName, nameEl);
+typeWriter(clientName, nameEl);
 
-  env.onclick = () => {
-    env.classList.add("open");
+env.onclick = () => {
+env.classList.add("open");
 
-    setTimeout(() => {
-      splash.style.display = "none";
-    }, 900);
-  };
+setTimeout(() => {  
+  splash.style.display = "none";  
+}, 900);
 
-  setTimeout(() => {
-    splash.style.display = "none";
-  }, 3000);
+};
+
+setTimeout(() => {
+splash.style.display = "none";
+}, 3000);
 }
 
 function typeWriter(text, el) {
-  let i = 0;
-  function t() {
-    if (i < text.length) {
-      el.textContent += text[i++];
-      setTimeout(t, 70);
-    }
-  }
-  t();
+let i = 0;
+function t() {
+if (i < text.length) {
+el.textContent += text[i++];
+setTimeout(t, 70);
+}
+}
+t();
 }
 
 /* Polaroid */
 function initPolaroid() {
-  const foto = new URLSearchParams(window.location.search).get("foto");
-  const img = document.getElementById("client-photo");
-  const box = document.getElementById("polaroid");
+const foto = new URLSearchParams(window.location.search).get("foto");
+const img = document.getElementById("client-photo");
+const box = document.getElementById("polaroid");
 
-  if (!img || !box) return;
+if (!img || !box) return;
 
-  if (foto) {
-    img.src = foto;
-  } else {
-    box.style.display = "none";
-  }
+if (foto) {
+img.src = foto;
+} else {
+box.style.display = "none";
+}
 }
 
 /* Cursor */
 function initCursor() {
-  if (window.innerWidth < 768) return;
+if (window.innerWidth < 768) return;
 
-  const cursor = document.querySelector(".cursor-dot");
-  if (!cursor) return;
+const cursor = document.querySelector(".cursor-dot");
+if (!cursor) return;
 
-  let x = 0, y = 0, tx = 0, ty = 0;
+let x = 0, y = 0, tx = 0, ty = 0;
 
-  document.addEventListener("mousemove", e => {
-    tx = e.clientX;
-    ty = e.clientY;
-  });
+document.addEventListener("mousemove", e => {
+tx = e.clientX;
+ty = e.clientY;
+});
 
-  function loop() {
-    x += (tx - x) * 0.2;
-    y += (ty - y) * 0.2;
-    cursor.style.transform = `translate(${x}px, ${y}px)`;
-    requestAnimationFrame(loop);
-  }
+function loop() {
+x += (tx - x) * 0.2;
+y += (ty - y) * 0.2;
+cursor.style.transform = `translate(${x}px, ${y}px)`;
+requestAnimationFrame(loop);
+}
 
-  loop();
+loop();
 }
