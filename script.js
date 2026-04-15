@@ -248,9 +248,7 @@ const foto = new URLSearchParams(window.location.search).get("foto");
 
 if (foto) {
   img.src = "images/" + foto;
-} else {
-  img.src = "images/thau.png";
-  }
+}
 const img = document.getElementById("client-photo");
 const box = document.getElementById("polaroid");
 
