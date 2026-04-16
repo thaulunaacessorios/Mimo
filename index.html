@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thau Luna — Presente de Aniversário</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+
+  <!-- Cursor personalizado (só desktop) -->
+  <div class="cursor-dot" id="cursor-dot"></div>
+
+  <!-- Canvas confete -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- ── Splash (envelope) ── -->
+  <div id="splash">
+    <div class="splash-inner">
+      <div class="envelope" id="open-envelope">
+        <div class="flap"></div>
+        <div class="envelope-body"></div>
+      </div>
+      <p class="splash-hint">Toque para abrir</p>
+    </div>
+  </div>
+
+  <!-- ── Passo 1 ── -->
+  <div id="step-1" class="scene">
+    <div class="logo-ring">
+      <div class="logo-inner">
+        <img src="logo.webp" alt="Thau Luna" class="logo-img"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+        <div class="logo-fallback">TL</div>
+      </div>
+    </div>
+
+    <p class="brand">Thau Luna Acessórios</p>
+
+    <h1 class="title">
+      Feliz aniversário,<br />
+      <em id="display-name">Estrela</em>
+    </h1>
+
+    <p class="caption">Preparamos algo especial só pra você.</p>
+
+    <button class="btn btn-rose" id="btn-step1">O que será?</button>
+  </div>
+
+  <!-- ── Passo 2 ── -->
+  <div id="step-2" class="scene">
+    <div class="lock-wrap">🔓</div>
+
+    <h2 class="title">Seu desconto<br />foi liberado</h2>
+
+    <p class="caption">Um presente exclusivo espera por você.</p>
+
+    <button class="btn btn-rose pulse-btn" id="btn-step2">Revelar presente</button>
+  </div>
+
+  <!-- ── Passo 3 ── -->
+  <div id="step-3" class="scene">
+
+    <div id="pre-reveal">
+      <div class="gift" id="gift-emoji">🎁</div>
+      <p class="caption">Toque no presente</p>
+    </div>
+
+    <div id="post-reveal" class="hidden">
+      <p class="cupom-label">Seu cupom</p>
+      <div class="cupom-box">
+        <span class="cupom-code">MimoNiver</span>
+        <button class="btn-copy" id="btn-copy" onclick="copyCupom()">Copiar</button>
+      </div>
+      <p class="copy-feedback" id="copy-feedback">Copiado!</p>
+
+      <div class="discount-block">
+        <div class="discount-row">
+          <span class="off">5% OFF</span>
+          <span class="threshold">acima de R$&nbsp;30</span>
+        </div>
+        <div class="discount-row featured">
+          <span class="off">10% OFF</span>
+          <span class="threshold">acima de R$&nbsp;50</span>
+        </div>
+        <div class="discount-row">
+          <span class="off">15% OFF</span>
+          <span class="threshold">acima de R$&nbsp;80</span>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a href="#" class="btn btn-primary" id="btn-whatsapp" target="_blank" rel="noopener">
+          Quero usar agora
+        </a>
+        <a href="https://thau-luna-acessorios.stoqui.shop" class="btn btn-ghost" target="_blank" rel="noopener">
+          Ver coleção
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
